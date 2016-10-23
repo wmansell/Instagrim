@@ -25,8 +25,8 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
  *
  * @author Administrator
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
-public class Login extends HttpServlet {
+@WebServlet(name = "Logout", urlPatterns = {"/Logout"})
+public class Logout extends HttpServlet {
 
     Cluster cluster=null;
 
@@ -48,29 +48,18 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String username=request.getParameter("username");
-        String password=request.getParameter("password");
         
-        User us=new User();
-        us.setCluster(cluster);
-        boolean isValid=us.IsValidUser(username, password);
         HttpSession session=request.getSession();
         System.out.println("Session in servlet "+session);
-        if (isValid){
             LoggedIn lg= new LoggedIn();
-            lg.setLogedin();
-            lg.setUsername(username);
+            lg.setLogedout();
+            lg.setUsername(null);
             //request.setAttribute("LoggedIn", lg);
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
             RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
-	    rd.forward(request,response);
-            
-        }else{
-            response.sendRedirect("/Instagrim/login.jsp");
-        }
-        
+	    rd.forward(request,response);        
     }
 
     /**
@@ -84,4 +73,3 @@ public class Login extends HttpServlet {
     }// </editor-fold>
 
 }
-

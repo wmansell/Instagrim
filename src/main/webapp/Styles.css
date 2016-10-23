@@ -10,7 +10,18 @@ and open the template in the editor.
 
 
 nav {
-    text-align: left;
+    text-align: center;
     border: 2px;
     float: right;
+}
+
+table {
+    background-color: black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    text-align: center;
+    padding: 8px;
 }

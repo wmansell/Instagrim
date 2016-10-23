@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,10 +18,56 @@
         <h1>InstaGrim ! </h1>
         <h2>Your world in Black and White</h2>
         </header>
+        <%          
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+        String UserName = lg.getUsername();
+        %>
         <nav>
             <ul>
-                
-                <li><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                <table>
+                    <% if (lg.getlogedin()) { %>
+                    <tr>
+                       <body>
+                            Logged in as <%=lg.getUsername()%>
+                       </body>
+                    </tr>
+                    <% } %>
+                    <tr>
+                        <th>
+                            <input type="button" onclick="location.href='/Instagrim';" value="Home" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input type="button" onclick="location.href='upload.jsp';" value="Upload" />
+                        </th>
+                    </tr>
+                    <% if (lg.getlogedin()) { %>
+                    <tr>
+                        <th>  
+                            <input type="button" onclick="location.href='/Instagrim/Images/<%=lg.getUsername()%>';" value="Your Images" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <form method="POST"  action="Logout">
+                                <input type="submit" value="Logout"> 
+                            </form>
+                        </th>
+                    </tr>
+                    <% } else { %>
+                    <tr>
+                        <th>
+                            <input type="button" onclick="location.href='register.jsp';" value="Regester" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input type="button" onclick="location.href='login.jsp';" value="Login" />
+                        </th>
+                    </tr>
+                    <% } %>
+                </table>
             </ul>
         </nav>
        
@@ -38,7 +85,10 @@
         </article>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
+                <body>
+                    &COPY; Warren Mansell <br>
+                    140009534
+                </body>
             </ul>
         </footer>
     </body>

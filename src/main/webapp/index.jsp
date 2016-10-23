@@ -19,35 +19,67 @@
             <h1>InstaGrim ! </h1>
             <h2>Your world in Black and White</h2>
         </header>
+        <%          
+        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+        if (lg != null) {
+        String UserName = lg.getUsername();
+        }
+        %>
         <nav>
             <ul>
-
-               
-                <li><a href="upload.jsp">Upload</a></li>
-                    <%
-                        
-                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                        if (lg != null) {
-                            String UserName = lg.getUsername();
-                            if (lg.getlogedin()) {
-                    %>
-
-                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
-                    <%}
-                            }else{
-                                %>
-                 <li><a href="register.jsp">Register</a></li>
-                <li><a href="login.jsp">Login</a></li>
-                <%
-                                        
-                            
-                    }%>
+                <table>
+                    <% if (lg != null) {
+                        if (lg.getlogedin()) { %>
+                    <tr>
+                       <body>
+                            Logged in as <%=lg.getUsername()%>
+                       </body>
+                    </tr>
+                    <% } %>
+                    <tr>
+                        <th>
+                            <input type="button" onclick="location.href='/Instagrim';" value="Home" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input type="button" onclick="location.href='upload.jsp';" value="Upload" />
+                        </th>
+                    </tr>
+                    <% if (lg.getlogedin()) { %>
+                    <tr>
+                        <th>  
+                            <input type="button" onclick="location.href='/Instagrim/Images/<%=lg.getUsername()%>';" value="Your Images" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <form method="POST"  action="Logout">
+                                <input type="submit" value="Logout"> 
+                            </form>
+                        </th>
+                    </tr>
+                    <% } }else { %>
+                    <tr>
+                        <th>
+                            <input type="button" onclick="location.href='register.jsp';" value="Regester" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input type="button" onclick="location.href='login.jsp';" value="Login" />
+                        </th>
+                    </tr>
+                    <% } %>
+                </table>
             </ul>
         </nav>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-                <li>&COPY; Andy C</li>
+                <body>
+                    &COPY; Warren Mansell <br>
+                    140009534
+                </body>
             </ul>
         </footer>
     </body>
