@@ -77,7 +77,7 @@
         <footer>
             <ul>
                 <body>
-                    &COPY; Warren Mansell <br>
+                    &COPY; Warren Mansell And Andy Cobley <br>
                     140009534
                 </body>
             </ul>

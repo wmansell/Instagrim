@@ -16,16 +16,17 @@
     <body>
         <h1>InstaGrim ! </h1>
         <h2>Your world in Black and White</h2>
-        <nav>
-            <ul>
-                <%          
+        <%          
         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+        if (lg != null) {
         String UserName = lg.getUsername();
+        }
         %>
         <nav>
             <ul>
                 <table>
-                    <% if (lg.getlogedin()) { %>
+                    <% if (lg != null) {
+                        if (lg.getlogedin()) { %>
                     <tr>
                        <body>
                             Logged in as <%=lg.getUsername()%>
@@ -55,7 +56,7 @@
                             </form>
                         </th>
                     </tr>
-                    <% } else { %>
+                    <% } }else { %>
                     <tr>
                         <th>
                             <input type="button" onclick="location.href='register.jsp';" value="Regester" />
@@ -68,8 +69,6 @@
                     </tr>
                     <% } %>
                 </table>
-            </ul>
-        </nav>
             </ul>
         </nav>
  
@@ -86,7 +85,7 @@
         <footer>
             <ul>
                 <body>
-                    &COPY; Warren Mansell <br>
+                    &COPY; Warren Mansell And Andy Cobley <br>
                     140009534
                 </body>
             </ul>
