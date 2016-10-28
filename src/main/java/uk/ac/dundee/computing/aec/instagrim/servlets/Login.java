@@ -35,6 +35,16 @@ public class Login extends HttpServlet {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
     }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+        // TODO Auto-generated method stub 
+        LoggedIn lg= new LoggedIn();
+        RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");   
+        HttpSession session=request.getSession(); 
+        session.setAttribute("LoggedIn", lg);
+        rd.forward(request, response);
+    } 
+
 
     /**
      * Handles the HTTP <code>POST</code> method.

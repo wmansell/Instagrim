@@ -67,7 +67,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <input type="button" onclick="location.href='login.jsp';" value="Login" />
+                            <input type="button" onclick="location.href='/Instagrim/Login';" value="Login" />
                         </th>
                     </tr>
                     <% } %>
